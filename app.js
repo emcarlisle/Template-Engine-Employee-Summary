@@ -18,17 +18,17 @@ function askManager() {
         .prompt([{
             type: "input",
             name: "name",
-            message: "What is the manager's name?"
+            message: "What is the Manager's name?"
         },
         {
             type: "input",
             name: "id",
-            message: "What is the manager ID?"
+            message: "What is the Manager ID?"
         },
         {
             type: "input",
             name: "email",
-            message: "What is the manager's email?"
+            message: "What is the Manager's email?"
         },
         {
             type: "input",
@@ -38,8 +38,49 @@ function askManager() {
 
 
 
-    ]).then(answers)
-}
+    ]).then(function(answers){
+        const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
+        employees.push(manager);
+    })
+};
+
+function askEngineer() {
+    return inquirer
+        .prompt ([{
+            type: "input",
+            name: "name",
+            message: "What is the Engineer's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Engineer's ID?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Engineer's email?"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "What is your Github user name?"
+        },
+        
+    ]).then(function(answers){
+        const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
+        answers.push(engineer);
+    });
+};
+
+
+
+// NEXT:
+// finish writing out prompts for engineer and intern
+// include a function with inquirer(choices) to determine what role using if/else, or switch statements
+// if answers.role = "manager" then run askManager
+
+
 
 
 // After the user has input all employees desired, call the `render` function (required
