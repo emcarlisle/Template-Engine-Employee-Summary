@@ -41,6 +41,7 @@ function askManager() {
     ]).then(function(answers){
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         employees.push(manager);
+        addEmployee();
     });
     
 };
@@ -128,14 +129,17 @@ async function addEmployee() {
         switch (answers.role) {
             case "Manager":
                 askManager();
+                break;
             case "Engineer":
                 askEngineer();
+                break;
             case "Intern":
                 askIntern();
                 break;
             default:
-                break;
+                buildTeam();
         };
+
     })
     
 };    
