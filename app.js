@@ -41,7 +41,8 @@ function askManager() {
     ]).then(function(answers){
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber);
         employees.push(manager);
-    })
+    });
+    
 };
 
 function askEngineer() {
@@ -69,7 +70,7 @@ function askEngineer() {
         
     ]).then(function(answers){
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-        answers.push(engineer);
+        employees.push(engineer);
     });
 };
 
@@ -97,24 +98,34 @@ function askIntern() {
         }
     ]).then(function(answers) {
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-        answers.push(intern);
+        employees.push(intern);
     });
 };
 
-function addEmployee() {
-    return inquirer
+async function addEmployee() {
+    console.log("Adding new Employee");
+    return await inquirer
         .prompt([{
             type: "list",
             name: "role",
             message: "Which type of employee are you adding?",
-            choices = [
+            choices: [
                 "Manager",
                 "Engineer",
                 "Intern"
             ]
         }
-    ]).then(function() {
-        switch (answers) {
+        //{
+        //    type: "list",
+        //    name: "newEmp",
+        //    message: "Would you like to add more members?",
+        //    choices: [
+        //        "Yes",
+        //        "No"
+        //    ]
+        //}
+    ]).then(function(answers) {
+        switch (answers.role) {
             case "Manager":
                 askManager();
             case "Engineer":
@@ -123,10 +134,29 @@ function addEmployee() {
                 askIntern();
                 break;
             default:
-                addEmployee();
-        }
-    });
-};
+                break;
+        };
+    })
+    
+};    
+    
+   
+    //{
+    //    //const employee = new Employee(answers.name, answers.id, answers.email);
+    //    const outputHTML = render(employees);
+    //    fs.writeFile(outputPath, outputHTML, function() {
+    //        console.log("Successfully added!");
+    //    });
+    //
+    //    
+
+        
+    //});
+    
+    
+
+
+addEmployee();
 
 
 
