@@ -95,9 +95,28 @@ function askIntern() {
             name: "school",
             message: "What is the name of the school the Intern attended?"
         }
-    ]);
+    ]).then(function(answers) {
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
+        answers.push(intern);
+    });
 };
 
+function employeeType(answers) {
+    return inquirer
+        .prompt([{
+            type: "list",
+            name: "Employee Type",
+            message: "What type of employee are you entering?"
+            choices: [
+                "Manager",
+                "Engineer",
+                "Intern"
+            ]
+        }
+    ]).then(function() {
+        
+    })
+};
 
 
 // NEXT:
