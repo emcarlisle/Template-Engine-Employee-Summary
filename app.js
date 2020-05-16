@@ -72,6 +72,7 @@ function askEngineer() {
     ]).then(function(answers){
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
         employees.push(engineer);
+        addEmployee();
     });
 };
 
@@ -100,6 +101,7 @@ function askIntern() {
     ]).then(function(answers) {
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
         employees.push(intern);
+        addEmployee();
     });
 };
 
@@ -113,18 +115,10 @@ async function addEmployee() {
             choices: [
                 "Manager",
                 "Engineer",
-                "Intern"
+                "Intern",
+                "None"
             ]
         }
-        //{
-        //    type: "list",
-        //    name: "newEmp",
-        //    message: "Would you like to add more members?",
-        //    choices: [
-        //        "Yes",
-        //        "No"
-        //    ]
-        //}
     ]).then(function(answers) {
         switch (answers.role) {
             case "Manager":
@@ -137,12 +131,17 @@ async function addEmployee() {
                 askIntern();
                 break;
             default:
-                buildTeam();
+                createTeam();
         };
 
     })
     
-};    
+};
+
+async function createTeam() {
+    const outputHTML = render(employees);
+    fs.writeFile(outputPath, outputHTML);
+};
     
    
     //{
