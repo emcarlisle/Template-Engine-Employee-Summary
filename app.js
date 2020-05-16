@@ -101,21 +101,27 @@ function askIntern() {
     });
 };
 
-function employeeType(answers) {
+function addEmployee() {
     return inquirer
         .prompt([{
             type: "list",
-            name: "Employee Type",
-            message: "What type of employee are you entering?"
-            choices: [
+            name: "role",
+            message: "Which type of employee are you adding?"
+            choices: [{}
                 "Manager",
                 "Engineer",
                 "Intern"
             ]
         }
     ]).then(function() {
-        
-    })
+        if (answers.role === "Manager") {
+            askManager();
+        } else if (answers.role === "Engineer") {
+            askEngineer();
+        } else (answers.role === "Intern") {
+            askIntern();
+        }
+    });
 };
 
 
