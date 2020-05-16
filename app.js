@@ -106,23 +106,28 @@ function addEmployee() {
         .prompt([{
             type: "list",
             name: "role",
-            message: "Which type of employee are you adding?"
-            choices: [{}
+            message: "Which type of employee are you adding?",
+            choices = [
                 "Manager",
                 "Engineer",
                 "Intern"
             ]
         }
     ]).then(function() {
-        if (answers.role === "Manager") {
-            askManager();
-        } else if (answers.role === "Engineer") {
-            askEngineer();
-        } else (answers.role === "Intern") {
-            askIntern();
+        switch (answers) {
+            case "Manager":
+                askManager();
+            case "Engineer":
+                askEngineer();
+            case "Intern":
+                askIntern();
+                break;
+            default:
+                addEmployee();
         }
     });
 };
+
 
 
 // NEXT:
