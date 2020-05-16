@@ -140,7 +140,10 @@ async function addEmployee() {
 
 async function createTeam() {
     const outputHTML = render(employees);
-    fs.writeFile(outputPath, outputHTML);
+    await fs.writeFile(outputPath, outputHTML, function(err) {
+        if (err) throw err;
+        console.log("Team Created Successfully!");
+    });
 };
     
    
