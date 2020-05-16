@@ -73,6 +73,31 @@ function askEngineer() {
     });
 };
 
+function askIntern() {
+    return inquirer
+        .prompt ([{
+            type: "input",
+            name: "name",
+            message: "What is the Intern's name?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Intern's ID?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Intern's email address?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is the name of the school the Intern attended?"
+        }
+    ]);
+};
+
 
 
 // NEXT:
